@@ -1,11 +1,14 @@
 #We set the Work Directory
 setwd("./UCI")
+
 #We load some libraries
 library(data.table)
 library(dplyr)
+
 #We list the files in the Working Directory
 list.files()
 options(scipen=999) 
+
 #We read all the files
 activityTest <- read.table("./UCI/test/y_test.txt", header = FALSE)
 activityTrain <- read.table("./UCI/train/y_train.txt", header = FALSE)
@@ -47,7 +50,7 @@ names(dataCombined) <- gsub("Gyro", "Gyro ", names(dataCombined))
 names(dataCombined) <- gsub("^t", "time", names(dataCombined))
 names(dataCombined) <- gsub("^f", "frequency", names(dataCombined))
 
-# We specified all the other variables no present in the formula and we get the mean
+# We specify all the other variables no present in the formula and we get the mean
 TidyData <-aggregate(. ~subject + activity, dataCombined, mean)
 
 # We order it by subject and activity
