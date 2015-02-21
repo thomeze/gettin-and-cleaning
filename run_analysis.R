@@ -5,7 +5,7 @@ setwd("./UCI")
 library(data.table)
 library(dplyr)
 
-#We list the files in the Working Directory
+#We list the files in the Working Directory and get some options  for display
 list.files()
 options(scipen=999) 
 
@@ -56,7 +56,8 @@ TidyData <-aggregate(. ~subject + activity, dataCombined, mean)
 # We order it by subject and activity
 TidyData <- TidyData[order(TidyData$subject,TidyData$activity), ]
 
-# We write the result to a file
-write.table(TidyData, file = "result_tidy.txt",row.name=FALSE)
+# We write the results to a file
+write.table(TidyData, file = "result_tidy_mean.txt",row.name=FALSE)
+write.table(TidyData, file = "result_tidy_combbined.txt",row.name=FALSE)
 
 #END
